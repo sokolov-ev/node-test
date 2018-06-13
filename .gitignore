@@ -19,3 +19,4 @@ log/
 *.log
 
 # etc...
+/public/files

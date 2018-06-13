@@ -1,8 +1,11 @@
-const express      = require('express');
-const app          = express();
-const path         = require('path');
-const logger       = require('morgan');
-const bodyParser   = require('body-parser');
+const express    = require('express');
+const app        = express();
+const path       = require('path');
+const logger     = require('morgan');
+const bodyParser = require('body-parser');
+const schedule   = require('node-schedule');
+
+const cronJobs = require('./scripts/cron');
 
 // App root directory
 global.appRoot = __dirname;
@@ -68,6 +71,10 @@ app.use(function(err, req, res) {
         message: err.message,
         error: {}
     });
+});
+
+let cron = schedule.scheduleJob('0 0 * * *', function(){
+    cronJobs.removExpiredFiles();
 });
 
 module.exports = app;

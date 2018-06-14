@@ -1,6 +1,6 @@
 'use strict';
 
-const File   = require(appRoot.concat('/models/files'));
+const File   = require('./../models/files');
 const fs     = require('fs');
 const moment = require('moment');
 

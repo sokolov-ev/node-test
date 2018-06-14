@@ -17,7 +17,17 @@ function save(req, res) {
     let fileName = guid.raw();
     let path = appRoot + '/public/files/' + fileName;
     let temp = fileBase64.replace(/^data:([a-z]+\/[a-z0-9\-\+]+(;[a-z\-]+\=[a-z0-9\-]+)?)?(;base64),/, "");
-    let imageData = Buffer.from(temp, 'base64');
+    let imageData;
+
+    try {
+        imageData = Buffer.from(temp, 'base64');
+    } catch(err) {
+        res.status(400).json({
+            status: false,
+            data: null,
+            error: err.message
+        });
+    }
 
     new Promise(function (resolve, reject) {
         fs.writeFile(path, imageData, (err) => {

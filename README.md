@@ -1,3 +1,15 @@
+### Docker
+
+##### Creating docker image
+
+`sudo docker build -t node-test ./`
+
+##### Docker running
+
+`sudo docker-compose up`
+
+-----
+
 ### Work with API
 
 1) File saving

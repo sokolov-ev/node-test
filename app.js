@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 
 // Init mongoose
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://127.0.0.1/file_storage');
+mongoose.connect('mongodb://mongo/file_storage');
 
 if (app.get('env') === 'development') {
     app.use(logger('dev'));
